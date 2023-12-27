@@ -22,4 +22,5 @@ const Cards = (props)=>{
         </div>
     )
 }
+
 export default Cards;

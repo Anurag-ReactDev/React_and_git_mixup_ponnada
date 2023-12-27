@@ -1,5 +1,5 @@
 import  Heading  from "./Heading";
-import  Cards  from "./Cards";
+import  Cards, {CardswithPromotedLabel}  from "./Cards";
 import swiggyData from "../utils/mockData";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -15,7 +15,8 @@ export const Body = ()=>{
    
     var[restaurants_filter,setList] = useState([]);////top rated restaurants filter
     var[full_list,setFullList] = useState([]) // clear filter
-    var[searchItem,setSearchItem] = useState("") //search 
+    var[searchItem,setSearchItem] = useState("") //search
+    const CardsPromoted = CardswithPromotedLabel(Cards) 
       //get value from API
      //useEffect is executed after the component is rendered
       
@@ -44,7 +45,7 @@ export const Body = ()=>{
     var swiggyApi = "https://anurag-react-swiggyapi-nodejs.netlify.app//.netlify/functions/api/"
         const fetchData = async ()=>{
             try{
-            const apiData = await fetch(swiggyApi) //since fetch is asynchronous, you can either use 'await' or 'then' to handle it
+            const apiData = await fetch(swiggyApi,{"Access-Control-Allow-Origin":"true"}) //since fetch is asynchronous, you can either use 'await' or 'then' to handle it
             const json = await apiData.json();
             // console.log(json);
             // setList(json?.data.cards[4].card.card.info);
@@ -133,10 +134,15 @@ export const Body = ()=>{
                         // console.log(e.info.id)
                         // console.log("cards rendered")
                         // console.log(e.info.id)
+                        
                         return (
                             
                                 <Link to={"restaurants/" + e.info.id}>
-                                    <Cards key= {e.info.id} cardData={e.info}/>
+                                  {/* ternary operator */}
+                                    {e.info.promoted == "true"? 
+                                    <CardsPromoted key= {e.info.id} cardData={e.info} /> 
+                                    : <Cards key= {e.info.id} cardData={e.info}/>}
+                                    
                                 </Link>
                             
                         )

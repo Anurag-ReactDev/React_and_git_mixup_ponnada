@@ -23,4 +23,16 @@ const Cards = (props)=>{
     )
 }
 
+//higer order function that returns card with promoted label
+export const CardswithPromotedLabel = (Cards)=>{
+    console.log("reached higher order function")
+    return (props)=>{
+        return(
+            <div>
+                <label className="text-white bg-black p-1 absolute">✨Promoted</label>
+                <Cards {...props}/> {/*the three dots, called a spread operator indicates all the data is passed to this higher order function is passed to the component that should receive that data */}
+            </div>
+        )
+    }
+}
 export default Cards;

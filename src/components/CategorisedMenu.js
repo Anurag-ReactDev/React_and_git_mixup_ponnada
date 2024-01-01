@@ -1,23 +1,22 @@
+import { useState } from "react"
 import ItemList from "./ItemList"
 const CategorisedMenu = ({data})=>{
-    console.log("Catergorised menu..")
-    console.log(data)
-    const filterBasedonCategories = data.cards.filter((items)=>items?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
-    
+    const CategorisedData = data;
+    const moreDetailedData = CategorisedData?.card?.card?.itemCards;
+    const[showItems,setShowItems] = useState(false);
+    console.log("ReRendered")
+    const clickHanlder = ()=>{
+        setShowItems(!showItems);
+    }
+   
+    // {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>
     return(
-        <div className="text-center"> 
-            <ul>
-                {filterBasedonCategories.map((CategorisedData)=>{
-                    return(
-                    <div>
-                        <li className="p-4 border-2 border-slate-200 flex justify-between font-extrabold">
-                            {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>
-                        </li>
-                        <ItemList moreDetailedData = {CategorisedData?.card?.card?.itemCards}/>
-                     </div>
-                    )
-                })}
-            </ul>
+        <div className="content-center cursor-pointer w-6/12 mx-52" onClick={clickHanlder}> 
+            <div className="p-4 border-2 border-slate-200 flex justify-between font-extrabold content-center hover:bg-yellow-200">
+                        {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>    
+            </div>
+            {showItems &&<ItemList listData = {moreDetailedData}/>}
+            
         </div>
     )
 }

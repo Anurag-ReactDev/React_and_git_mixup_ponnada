@@ -6,6 +6,7 @@ import url from "../utils/constants";
 import CategorisedMenu from "./CategorisedMenu";
 
 const MenuCard = ()=>{
+    console.log("Menu card")
 
     const[resMenu,setResMenu] = useState(null)
 
@@ -41,8 +42,10 @@ const MenuCard = ()=>{
         var destructuredData_basic = resMenu?.data?.cards[0]?.card?.card?.info;
         // console.log(resMenu?.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR)
         var itemCards = resMenu?.data.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
+        console.log(itemCards)
+        const filterBasedonCategories = itemCards?.cards.filter((items)=>items?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory")
         return(
-            <div className="">
+            <div className="mx-60">
                 <div>
                     {/* <img className="w-60 h-40 m-4" src={url+destructuredData_basic.cloudinaryImageId}>
                     </img> */}
@@ -58,10 +61,11 @@ const MenuCard = ()=>{
                     {/*
                      <CategorisedMenu/> component should come here
                      */}
-                     <CategorisedMenu data={itemCards}/>
-                    <div className="mx-5">
+                     {filterBasedonCategories.map((categorisedData,index)=><CategorisedMenu data={categorisedData} showItems={true} showIndex={1}/>)}
+                     
+                    <div className="content-center mx-auto">
                         <Link to="/">
-                            <button className="mx-2 border-2 border-slate-300 rounded-lg p-2 hover:bg-yellow-200">
+                            <button className="mx-2 border-2 border-slate-300 rounded-lg p-2 hover:bg-violet-200">
                             Back
                             </button>
                         </Link>

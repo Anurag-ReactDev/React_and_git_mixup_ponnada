@@ -39,4 +39,6 @@ and then we use a ternary opeartor (condition?true:false) and render higher orde
 then, 
 
 
-
+Important concepts
+    ->State uplifting
+    ->React context

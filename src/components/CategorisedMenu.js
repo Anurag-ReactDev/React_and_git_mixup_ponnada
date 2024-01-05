@@ -1,12 +1,13 @@
 import { useState } from "react"
 import ItemList from "./ItemList"
-const CategorisedMenu = ({data})=>{
+const CategorisedMenu = ({data,showItems,setShowIndex,showIndex})=>{
     const CategorisedData = data;
     const moreDetailedData = CategorisedData?.card?.card?.itemCards;
-    const[showItems,setShowItems] = useState(false);
-    console.log("ReRendered")
+    // const[showItems,setShowItems] = useState(false);
+    // console.log("ReRendered")
     const clickHanlder = ()=>{
-        setShowItems(!showItems);
+        setShowIndex();
+        console.log(showIndex)
     }
    
     // {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>

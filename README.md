@@ -42,3 +42,14 @@ then,
 Important concepts
     ->State uplifting
     ->React context
+
+React Context
+    In react, if we were to use a state variable or some data anywhere inside the react application, we can achieve it
+    by something called props drilldown, where we explicitly pass the data to each component until we reach to the
+    component where we actually need the data, this method works fine but as the application gets huge it becomes harder to
+    keep track of the data that we're passing through each component, so to solve this we have something called
+    'createContext' in react where it makes the data global thus allowing us to access it where ever we want to.
+
+    We create this context similar to a component, we will first import createContext from react
+    and then write a function which makes use of createContext method and actually takes in object as an argument
+    and we export it to use it where ever we want to.

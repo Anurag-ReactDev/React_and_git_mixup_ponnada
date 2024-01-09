@@ -1,4 +1,4 @@
-import React,{lazy,Suspense} from "react";
+import React,{lazy,Suspense,useEffect,useState,useContext} from "react";
 import  ReactDOM  from "react-dom/client";
 import  Body  from "./components/Body";
 import {createBrowserRouter, RouterProvider, Outlet, Link} from "react-router-dom";
@@ -9,7 +9,7 @@ import Heading from "./components/Heading";
 import Error from "./components/Error";
 import MenuCard from "./components/MenuCard";
 import Sui from "./components/Sui";
-
+import UserContext from "./utils/UserContext";
 const root = document.getElementById('root')
 
 //this won't work
@@ -18,16 +18,38 @@ const Instamart = lazy(()=>{
     import("./components/Instamart")
 })
 */
-
+// const [userName,setUserName] = useState("");
 //this works, dont know why😅
 const Instamart = lazy(()=>import("./components/Instamart"))
+
+
+
+
 const AppLayout = ()=>{
+
+    //authentication, not real but just do it
+    useEffect(()=>{
+        //actually this should be an api call but for simplicity it is hardcoded for now
+        const data = {
+            "name" : "Anurag Preetam"
+        }
+        setUsername(data.name)
+    },[])
+    const[userName,setUsername] = useState();
+
     return(
-        <div>
+        <UserContext.Provider value={{loggedInUser:userName,setUsername}}>
+            <div>
+            {/* <UserContext.Provider value={{loggedInUser:"PODA"}}>
+                <Heading/>
+            </UserContext.Provider> */}
             <Heading/>
-            <Outlet/>
-            
-        </div>
+                <Outlet/>
+           
+            </div>
+        </UserContext.Provider>
+           
+       
     )
 }
 const appRoute = createBrowserRouter([

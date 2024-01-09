@@ -1,9 +1,12 @@
 
 import url from "../utils/constants";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 const Cards = (props)=>{
     const{cloudinaryImageId,id,name,cuisines,avgRating,locality,areaname,costForTwo,sla} = props?.cardData;
     var dummyKey = Object.keys(props.cardData).length; //just to handle unique key problem in cuisines which uses li
     // console.log(typeof dummyKey)
+    const {loggedInUser} = useContext(UserContext)
     return(
         <div className="m-2 p-2 bg-slate-200 hover:border-2 border-yellow-200 rounded-lg">
             <img className="w-40 h-40" src={url+cloudinaryImageId}></img>
@@ -19,6 +22,7 @@ const Cards = (props)=>{
             <h1>{areaname}</h1>
             <h1>Cost for Two: 💰{costForTwo}</h1>
             <h1>Delivery Time: ⌛{sla.deliveryTime}</h1>
+            <h1>{loggedInUser}</h1>
         </div>
     )
 }

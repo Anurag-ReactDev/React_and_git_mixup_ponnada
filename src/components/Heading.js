@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const Heading = ()=>{
     
     console.log("Heading rendered")
+    
     var status = useOnlineStatus();
-
+    const {loggedInUser} = useContext(UserContext);
+    // console.log({data})
     //function to provide symbol to show related status
     const Symbol = ()=>{
         if(status == "true"){
@@ -52,6 +55,9 @@ const Heading = ()=>{
                     </li>
                     <li className="mx-2 p-3 rounded-lg hover:bg-green-200">
                         <Link to="/instamart">Instamart</Link>
+                    </li>
+                    <li className="mx-2 p-3 rounded-lg hover:bg-red-200">
+                        {loggedInUser}
                     </li>
                    
                   

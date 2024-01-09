@@ -1,12 +1,13 @@
 import  Heading  from "./Heading";
 import  Cards, {CardswithPromotedLabel}  from "./Cards";
 import swiggyData from "../utils/mockData";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useEffect } from "react";
 import Sui from "./Sui";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 //whenever a state variable for a component changes, react, re-renders the component
 
@@ -17,6 +18,7 @@ export const Body = ()=>{
     var[full_list,setFullList] = useState([]) // clear filter
     var[searchItem,setSearchItem] = useState("") //search
     const CardsPromoted = CardswithPromotedLabel(Cards) 
+    const {loggedInUser,setUsername} = useContext(UserContext)
       //get value from API
      //useEffect is executed after the component is rendered
       
@@ -107,6 +109,13 @@ export const Body = ()=>{
                 
             }}
             />
+
+            {/* User search  */}
+            <div className="my-4">
+                <input className="border-2 border-gray-400 rounded-lg"  value={loggedInUser} onChange={(e)=>{
+                    setUsername(e.target.value)
+                }}></input>
+            </div>
 
             {/* avgRating>4 filter */}
 

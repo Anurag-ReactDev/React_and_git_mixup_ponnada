@@ -53,3 +53,13 @@ React Context
     We create this context similar to a component, we will first import createContext from react
     and then write a function which makes use of createContext method and actually takes in object as an argument
     and we export it to use it where ever we want to.
+
+    To use that data, 
+        In a functional component- we should use 'useContext' hook to use it.
+        In Clas based component- we should use <Namo_of_component.Consumer>
+                                                {({data})=>console.log({data})}
+                                                </Namo_of_component.Consumer>
+
+    To change the data of reactcontext you can make use of
+    <Name_of_component.Provider value={{data : "change the value or use a state variable to change"}}>
+    </Name_of_component.Provider>

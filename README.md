@@ -63,3 +63,11 @@ React Context
     To change the data of reactcontext you can make use of
     <Name_of_component.Provider value={{data : "change the value or use a state variable to change"}}>
     </Name_of_component.Provider>
+
+
+Redux
+->install @reduxjs/toolkit
+->react-redux
+
+1)configure store
+2)connect store to app.js using <provider store={store_name}></provider>

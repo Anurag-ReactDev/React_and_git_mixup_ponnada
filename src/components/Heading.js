@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useContext } from "react";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+import cartSlice from "../utils/cartSlice";
 
 const Heading = ()=>{
     
@@ -9,6 +11,10 @@ const Heading = ()=>{
     
     var status = useOnlineStatus();
     const {loggedInUser} = useContext(UserContext);
+
+    //subscribing to store using selector
+    const Cartitems = useSelector((appStore)=>appStore.cart.items);
+    console.log(Cartitems)
     // console.log({data})
     //function to provide symbol to show related status
     const Symbol = ()=>{
@@ -58,6 +64,9 @@ const Heading = ()=>{
                     </li>
                     <li className="mx-2 p-3 rounded-lg hover:bg-red-200">
                         {loggedInUser}
+                    </li>
+                    <li className="mx-2 p-3 rounded-lg hover:bg-red-200">
+                        Cart Items {Cartitems.length}
                     </li>
                    
                   

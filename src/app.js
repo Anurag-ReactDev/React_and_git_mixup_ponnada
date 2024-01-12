@@ -10,6 +10,10 @@ import Error from "./components/Error";
 import MenuCard from "./components/MenuCard";
 import Sui from "./components/Sui";
 import UserContext from "./utils/UserContext";
+//redux
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+
 const root = document.getElementById('root')
 
 //this won't work
@@ -38,6 +42,9 @@ const AppLayout = ()=>{
     const[userName,setUsername] = useState();
 
     return(
+        <Provider store={appStore}>
+
+        
         <UserContext.Provider value={{loggedInUser:userName,setUsername}}>
             <div>
             {/* <UserContext.Provider value={{loggedInUser:"PODA"}}>
@@ -48,6 +55,7 @@ const AppLayout = ()=>{
            
             </div>
         </UserContext.Provider>
+        </Provider>
            
        
     )

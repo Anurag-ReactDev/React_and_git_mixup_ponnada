@@ -12,8 +12,8 @@ const CategorisedMenu = ({data,showItems,setShowIndex,showIndex})=>{
    
     // {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>
     return(
-        <div className="content-center cursor-pointer w-6/12 mx-52" onClick={clickHanlder}> 
-            <div className="p-4 border-2 border-slate-200 flex justify-between font-extrabold content-center hover:bg-yellow-200">
+        <div className="content-center cursor-pointer" onClick={clickHanlder}> 
+            <div className="w-12/12 m-auto p-4 border-2 border-slate-200 flex justify-between font-extrabold content-center hover:bg-yellow-200">
                         {CategorisedData?.card?.card?.title} ({CategorisedData?.card?.card?.itemCards.length}) <span>🔽</span>    
             </div>
             {showItems &&<ItemList listData = {moreDetailedData}/>}

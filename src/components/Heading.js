@@ -57,7 +57,7 @@ const Heading = ()=>{
                         <Link to="/contact">Contact</Link>
                     </li>
                     <li className="mx-2 p-3 rounded-lg hover:bg-green-200">
-                        <Link to="/cart">Cart</Link>
+                        <Link to="/cart">Cart ({Cartitems.length})</Link>
                     </li>
                     <li className="mx-2 p-3 rounded-lg hover:bg-green-200">
                         <Link to="/instamart">Instamart</Link>
@@ -65,11 +65,6 @@ const Heading = ()=>{
                     <li className="mx-2 p-3 rounded-lg hover:bg-red-200">
                         {loggedInUser}
                     </li>
-                    <li className="mx-2 p-3 rounded-lg hover:bg-red-200">
-                        Cart Items {Cartitems.length}
-                    </li>
-                   
-                  
                 </ul>
             </div>
         </div>
